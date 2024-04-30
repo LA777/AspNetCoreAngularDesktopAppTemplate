@@ -397,3 +397,5 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 /aspnetcoreangulardesktopapp.client/package-lock.json
+/AspNetCoreAngularDesktopApp.Server/Properties/launchSettings.json
+/AspNetCoreAngularDesktopApp.Server/.config/dotnet-tools.json
