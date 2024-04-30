@@ -396,3 +396,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/aspnetcoreangulardesktopapp.client/package-lock.json
