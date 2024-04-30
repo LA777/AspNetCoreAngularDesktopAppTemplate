@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreAngularDesktopApp.Server", "AspNetCoreAngularDesktopApp.Server\AspNetCoreAngularDesktopApp.Server.csproj", "{592F9CD7-5AE2-4803-9835-AAA2CCDB3F6F}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "aspnetcoreangulardesktopapp.client", "aspnetcoreangulardesktopapp.client\aspnetcoreangulardesktopapp.client.esproj", "{BBB2D08A-8D42-4837-BEBB-0D52BDDC5249}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{592F9CD7-5AE2-4803-9835-AAA2CCDB3F6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{592F9CD7-5AE2-4803-9835-AAA2CCDB3F6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{592F9CD7-5AE2-4803-9835-AAA2CCDB3F6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{592F9CD7-5AE2-4803-9835-AAA2CCDB3F6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBB2D08A-8D42-4837-BEBB-0D52BDDC5249}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBB2D08A-8D42-4837-BEBB-0D52BDDC5249}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBB2D08A-8D42-4837-BEBB-0D52BDDC5249}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{BBB2D08A-8D42-4837-BEBB-0D52BDDC5249}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBB2D08A-8D42-4837-BEBB-0D52BDDC5249}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBB2D08A-8D42-4837-BEBB-0D52BDDC5249}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3FCBF869-D56D-443B-9E60-50966B924211}
+	EndGlobalSection
+EndGlobal
