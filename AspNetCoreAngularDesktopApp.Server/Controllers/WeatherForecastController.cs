@@ -1,4 +1,6 @@
+using AspNetCoreAngularDesktopApp.Server.Options;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace AspNetCoreAngularDesktopApp.Server.Controllers
 {
@@ -12,10 +14,13 @@ namespace AspNetCoreAngularDesktopApp.Server.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly Settings _settings;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IOptionsMonitor<Settings> optionsMonitor)
         {
-            _logger = logger;
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            var optionsMonitorData = optionsMonitor ?? throw new ArgumentNullException(nameof(optionsMonitor));
+            _settings = optionsMonitorData.CurrentValue;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
