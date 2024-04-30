@@ -20,6 +20,7 @@
     <ProjectReference Include="..\aspnetcoreangulardesktopapp.client\aspnetcoreangulardesktopapp.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\OS.Windows\WindowsConsole\WindowsConsole.csproj" />
   </ItemGroup>
 
 </Project>

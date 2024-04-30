@@ -1,9 +1,19 @@
 using AspNetCoreAngularDesktopApp.Server.Options;
 using AspNetCoreAngularDesktopApp.Server.Pipe;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using WindowsConsole;
+
+// App arguments
+foreach (var arg in Environment.GetCommandLineArgs())
+{
+    if (arg == "--silent" && RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+    {
+        ConsoleHelper.HideConsole();
+    }
+}
 
 Console.WriteLine("App started. Version: 0.0.1");
-
-var trayAppFilePath = string.Empty;
 
 var builder = WebApplication.CreateBuilder(args);
 var environment = builder.Configuration.GetSection("ASPNETCORE_ENVIRONMENT").Value ?? "Production";
@@ -45,9 +55,76 @@ app.MapFallbackToFile("/index.html");
 
 if (app.Environment.IsProduction())
 {
-    app.UseHsts(); // https://learn.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-8.0&tabs=visual-studio%2Clinux-ubuntu
-
-    trayAppFilePath = Path.Combine(Environment.CurrentDirectory, "SystemTrayApp.exe");
+    app.UseHsts();
 }
 
+var appEndpointUrl = app.Configuration["Kestrel:Endpoints:App:Url"] ?? "https://localhost:55000";
+
+if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+{
+    var provider = builder.Services.BuildServiceProvider();
+    var pipeServer = provider.GetService<IPipeServer>();
+
+    _ = Task.Run(async () =>
+    {
+        await RunPipeServerAndListen(app, pipeServer);
+    });
+
+    var systemTrayAppFilePath = string.Empty;
+
+    if (app.Environment.IsDevelopment())
+    {
+        systemTrayAppFilePath = Path.Combine(Environment.CurrentDirectory, @"..\OS.Windows\SystemTrayApp\bin\Debug\net8.0-windows\SystemTrayApp.exe");
+    }
+    else if (app.Environment.IsProduction())
+    {
+        systemTrayAppFilePath = Path.Combine(Environment.CurrentDirectory, "SystemTrayApp.exe");
+    }
+
+    RunSystemTrayApp(systemTrayAppFilePath, appEndpointUrl);
+}
+
+OpenBrowser(appEndpointUrl);
+
 app.Run();
+
+return;
+
+static async Task RunPipeServerAndListen(WebApplication app, IPipeServer pipeServer)
+{
+    var replyText = await pipeServer.RunAndGetTextReplyAsync();
+    if (replyText == "command:exit")
+    {
+        await app.StopAsync();
+    }
+}
+
+static void RunSystemTrayApp(string systemTrayAppFilePath, string url)
+{
+    var fileFullPath = Path.GetFullPath(systemTrayAppFilePath);
+
+    if (File.Exists(fileFullPath))
+    {
+        Process.Start(fileFullPath, new List<string> { url });
+    }
+}
+
+static void OpenBrowser(string url)
+{
+    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+    {
+        Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+    }
+    else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+    {
+        Process.Start("xdg-open", url);
+    }
+    else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+    {
+        Process.Start("open", url);
+    }
+    else
+    {
+        throw new NotImplementedException("Unknown OS type.");
+    }
+}
