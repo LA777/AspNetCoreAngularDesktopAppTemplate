@@ -3,9 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreAngularDesktopApp.Server", "AspNetCoreAngularDesktopApp.Server\AspNetCoreAngularDesktopApp.Server.csproj", "{592F9CD7-5AE2-4803-9835-AAA2CCDB3F6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreAngularDesktopApp.Server", "AspNetCoreAngularDesktopApp.Server\AspNetCoreAngularDesktopApp.Server.csproj", "{592F9CD7-5AE2-4803-9835-AAA2CCDB3F6F}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "aspnetcoreangulardesktopapp.client", "aspnetcoreangulardesktopapp.client\aspnetcoreangulardesktopapp.client.esproj", "{BBB2D08A-8D42-4837-BEBB-0D52BDDC5249}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6D911FF6-048E-4EE4-BF5A-1A34AF26B363}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
